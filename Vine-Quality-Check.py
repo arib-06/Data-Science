@@ -9,30 +9,27 @@ from sklearn.metrics import (
     confusion_matrix, accuracy_score, precision_score, recall_score, f1_score
 )
 
-# ============================================================
+
 # 1. LOAD DATA
-# ============================================================
+
 df = pd.read_csv("wine-quality-white-and-red.csv")
 
 # ENCODE categorical column (THIS WAS THE ISSUE)
 df['type'] = df['type'].map({'red': 0, 'white': 1})
 
-# ============================================================
+
 # 2. BASIC CHECKS
-# ============================================================
+
 print(df.head())
 print("\nMissing values:\n", df.isnull().sum())
 print("\nDuplicate rows:", df.duplicated().sum())
 print("\nData types:\n", df.dtypes)
 
-# ============================================================
+
 # 3. CREATE LABEL FOR CLASSIFICATION
-# ============================================================
 df['label_goodwine'] = (df['quality'] >= 7).astype(int)
 
-# ============================================================
-# ================= OPTION A: REGRESSION =====================
-# ============================================================
+#  OPTION A: REGRESSION
 
 X_reg = df.drop(['quality', 'label_goodwine'], axis=1)
 y_reg = df['quality']
@@ -59,9 +56,8 @@ print("RMSE:", rmse)
 print("MAE :", mae)
 print("R²  :", r2)
 
-# ============================================================
-# ============== OPTION B: CLASSIFICATION ====================
-# ============================================================
+
+# Option B: Classification
 
 X_cls = df.drop(['quality', 'label_goodwine'], axis=1)
 y_cls = df['label_goodwine']
@@ -87,3 +83,4 @@ print("Accuracy :", accuracy_score(yc_test, yc_pred))
 print("Precision:", precision_score(yc_test, yc_pred))
 print("Recall   :", recall_score(yc_test, yc_pred))
 print("F1 Score :", f1_score(yc_test, yc_pred))
+
