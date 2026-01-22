@@ -72,7 +72,4 @@ All the following topics were implemented practically as assignments:
 | IDE | VS Code |
 | Libraries | Pandas, NumPy, Matplotlib, Scikit-learn |
 
----
-
-## 📂 Repository Structure
 
